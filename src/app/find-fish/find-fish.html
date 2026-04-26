@@ -1,0 +1,43 @@
+<div class="recherche-widget">
+  <h1>Trouve la recette parfaite</h1>
+
+  <div class="zone-texte">
+    <p class="instruction">Tu connais ton poisson ?</p>
+    <div class="input-group">
+      <!--ngModel permet de renseigner la variable researchOfTheUser 
+    au fur et à mesure du renseignement de l'input du User-->
+      <!--ngModelChange quand à lui lance la fonction filter à chaque fois que la variable researchOfTheUser est mise à jour
+     donc en gros à un peu prêt à chaque fois que l'utilisateur renseigne une lettre-->
+      <input
+        [(ngModel)]="researchOfTheUser"
+        (ngModelChange)="fishFilter()"
+        (keyup.enter)="showRecipes()"
+        type="text"
+        placeholder="Renseigne le nom du poisson à cuisiner"
+      />
+      @if (suggestedFishNames.length > 0) {
+        <ul class="suggestions-list">
+          @for (poisson of suggestedFishNames; track poisson) {
+            <li (click)="selectSuggestion(poisson)">{{ poisson }}</li>
+          }
+        </ul>
+      }
+      <button type="button" class="btn-valider" (click)="showRecipes()">
+        <img
+          src="https://machineafish.fr/assets/images/logo_recherche_poissonbis.webp"
+          alt="Logo Recherche Poisson"
+          class="logo"
+        />
+      </button>
+    </div>
+  </div>
+
+  <div class="separateur">
+    <span>OU</span>
+  </div>
+
+  <div class="zone-photo">
+    <p class="instruction">Tu ne connais pas son nom ?</p>
+    <button class="btn-camera">📸 Prends une photo de ta prise</button>
+  </div>
+</div>
