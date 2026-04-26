@@ -1,0 +1,204 @@
+// --- VARIABLES DE TON THEME ---
+$couleur-principale: #0c4a6e;
+$couleur-secondaire: #0284c7;
+$couleur-accent: #ea580c;
+$fond-widget: #ffffff;
+$gris-bordure: #e5e7eb;
+$gris-texte: #4b5563;
+
+$breakpoints: (
+  'tablet': 600px,
+  'desktop': 1024px,
+);
+
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+//--- LE WIDGET GLOBAL ---
+.recherche-widget {
+  background-color: $fond-widget;
+  // Par défaut (Mobile)
+  width: 95%;
+  max-width: 500px;
+  margin: 32px auto;
+  padding: 24px 16px; // Plus compact sur mobile
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: Inter, cursive;
+
+  // Ajustement Tablette et +
+  @include respond-to('tablet') {
+    padding: 40px 32px;
+    width: 100%; // Laisse le max-width à 500px prendre le relais
+  }
+
+  h1 {
+    color: $couleur-principale;
+    font-size: 22px; // Plus petit sur mobile
+    margin-bottom: 24px;
+    font-weight: 800;
+
+    @include respond-to('tablet') {
+      font-size: 28px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .instruction {
+    color: $gris-texte;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 16px;
+
+    @include respond-to('tablet') {
+      font-size: 17px;
+    }
+  }
+
+  // --- ZONE 1 : LA RECHERCHE TEXTE ---
+  .zone-texte {
+    .input-group {
+      display: flex;
+      position: relative;
+      gap: 8px;
+
+      input {
+        flex: 1;
+        padding: 12px 16px;
+        border: 2px solid $gris-bordure;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.3s ease;
+
+        @include respond-to('tablet') {
+          font-size: 16px;
+        }
+
+        &:focus {
+          border-color: $couleur-secondaire;
+        }
+      }
+
+      .btn-valider {
+        background-color: $couleur-principale;
+        flex-shrink: 0;
+        border: none;
+        border-radius: 8px;
+        padding: 4px 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          background-color: lighten($couleur-principale, 10%);
+        }
+
+        .logo {
+          height: 24px;
+          width: auto;
+
+          @include respond-to('tablet') {
+            height: 28px;
+          }
+        }
+      }
+
+      .suggestions-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid $gris-bordure;
+        border-radius: 8px;
+        margin-top: 8px;
+        padding: 0;
+        list-style: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        max-height: 200px;
+        overflow-y: auto;
+
+        li {
+          padding: 12px 16px;
+          text-align: left;
+          border-bottom: 1px solid #f3f4f6;
+          cursor: pointer;
+          font-weight: 500;
+          font-size: 14px;
+          transition: background 0.2s;
+
+          @include respond-to('tablet') {
+            font-size: 15px;
+          }
+
+          &:hover {
+            background-color: #f0f9ff;
+            color: $couleur-secondaire;
+          }
+        }
+      }
+    }
+  }
+
+  // --- LE SEPARATEUR STYLE ---
+  .separateur {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+    color: #9ca3af;
+    font-weight: bold;
+    font-size: 14px;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid $gris-bordure;
+    }
+
+    span {
+      padding: 0 16px;
+    }
+  }
+
+  // --- ZONE 2 : LA CAMERA ---
+  .zone-photo {
+    .btn-camera {
+      width: 100%;
+      background-color: $couleur-accent;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+      @include respond-to('tablet') {
+        padding: 20px;
+        font-size: 18px;
+      }
+
+      &:hover {
+        background-color: darken($couleur-accent, 5%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(234, 88, 12, 0.3);
+      }
+    }
+  }
+}

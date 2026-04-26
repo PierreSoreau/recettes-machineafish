@@ -1,11 +1,11 @@
-//template permet de détailler les conditions d'affichage ou pas des composants //(alertFishFound)
-c'est l'eventEmitter. En gros c'est le canon qui lorsque l'utiliseur //appui sur entrée ou clic
-lance le nom du poisson que l'utilisateur a selectionné //il est receptionné par la fonction
-changePage. qui s'occupe de changer //de visuel de composant en changeant la variable currentView
+<!--template permet de détailler les conditions d'affichage ou pas des composants (alertFishFound)
+c'est l'eventEmitter. En gros c'est le canon qui lorsque l'utiliseur appui sur entrée ou clic
+lance le nom du poisson que l'utilisateur a selectionné il est receptionné par la fonction
+changePage. qui s'occupe de changer //de visuel de composant en changeant la variable currentView-->
 
 <div class="recipes-container">
   @if (currentView === 'search') {
-    <app-find-fish (alertFishFound)="changePage($event)"></app-find-fish>
+    <app-find-fish (alertFishFound)="changePage($event)" class="find-fish-box"></app-find-fish>
   } @else if (currentView === 'listRecipes') {
     <app-show-recipes [fish]="finalFishName"></app-show-recipes>
   }

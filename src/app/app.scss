@@ -1,0 +1,12 @@
+.recipes-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .find-fish-box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
